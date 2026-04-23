@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["quant_research*"]
+
+[project]
+name = "quant-research"
+version = "0.1.0"
+description = "Quantitative research experiments built on reusable data and backtesting packages"
+authors = [{ name = "Andrew Geday" }]
+dependencies = [
+  "pandas",
+  "numpy",
+  "pyyaml",
+  "matplotlib"
+]

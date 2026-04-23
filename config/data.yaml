@@ -1,0 +1,5 @@
+pipeline:
+  config_path: "../market-data-pipeline/config.yaml"
+
+output:
+  prices_path: "../market-data-pipeline/output/equities_ohlcv.csv"

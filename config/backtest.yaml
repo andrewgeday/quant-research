@@ -1,0 +1,6 @@
+strategy:
+  short_window: 20
+  long_window: 50
+
+backtest:
+  transaction_cost: 0.0005
