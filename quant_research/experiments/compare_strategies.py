@@ -63,7 +63,7 @@ def run():
     ).set_index("date")
 
     spy = yf.download("SPY", start=prices.index.min(), end=prices.index.max())
-    spy_returns = plt.spy["Close"].pct_change().dropna()
+    spy_returns = spy["Close"].pct_change().dropna()
 
     results = {}
 
