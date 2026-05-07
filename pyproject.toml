@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
@@ -8,12 +8,58 @@ include = ["quant_research*"]
 
 [project]
 name = "quant-research"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Quantitative research experiments built on reusable data and backtesting packages"
 authors = [{ name = "Andrew Geday" }]
+requires-python = ">=3.8"
 dependencies = [
-  "pandas",
-  "numpy",
-  "pyyaml",
-  "matplotlib"
+  "pandas>=2.0.0",
+  "numpy>=1.24.0",
+  "pyyaml>=6.0",
+  "matplotlib>=3.6.0",
+  "yfinance>=0.2.0"
 ]
+
+[project.optional-dependencies]
+dev = [
+  "black>=23.0.0",
+  "flake8>=6.0.0",
+  "mypy>=1.0.0",
+  "pytest>=7.0.0"
+]
+
+[project.scripts]
+quant-baseline = "quant_research.experiments.baseline:main"
+quant-momentum = "quant_research.experiments.momentum:main"
+quant-mean-reversion = "quant_research.experiments.mean_reversion:main"
+quant-parameter-sweep = "quant_research.experiments.parameter_sweep:main"
+quant-compare = "quant_research.experiments.compare_strategies:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.setuptools_scm]
+write_to = "quant_research/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
